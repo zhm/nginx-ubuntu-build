@@ -1,6 +1,6 @@
 # Install + modify this package: https://launchpad.net/~nginx/+archive/ubuntu/stable/+packages
 
-if [ -f "/opt/rebuildnginx-extras/nginx-extras_1.6.2-5+trusty0_amd64.deb" ]
+if [ -f "/opt/rebuildnginx-extras/nginx-extras_1.10.1-0+trusty1_amd64.deb" ]
 then
   exit 0
 fi
@@ -26,11 +26,11 @@ apt-get build-dep nginx-extras
 
 # Add `--add-module=/opt/httpupload/nginx-upload-module-2.2` to the end of the configure command
 # used to build nginx. This could easily be edited by hang, but installation of nginx would then be
-# a manual process. This is a somewhat fragile approach, but it will work for the current 1.6.2
+# a manual process. This is a somewhat fragile approach, but it will work for the current 1.8.0
 # deb package rules.
-ruby -e "content = File.read('/opt/rebuildnginx-extras/nginx-1.6.2/debian/rules').gsub('--add-module=\$(MODULESDIR)/ngx_http_substitutions_filter_module', \"--add-module=\$(MODULESDIR)/ngx_http_substitutions_filter_module \\\\\n\\t\\t\\t--add-module=/opt/httpupload/nginx-upload-module-2.2\"); File.open('/opt/rebuildnginx-extras/nginx-1.6.2/debian/rules', 'wb') {|f| f.write(content)}"
+ruby -e "content = File.read('/opt/rebuildnginx-extras/nginx-1.10.1/debian/rules').gsub('--add-module=\$(MODULESDIR)/ngx_http_substitutions_filter_module', \"--add-module=\$(MODULESDIR)/ngx_http_substitutions_filter_module \\\\\n\\t\\t\\t--add-module=/opt/httpupload/nginx-upload-module-2.2\"); File.open('/opt/rebuildnginx-extras/nginx-1.10.1/debian/rules', 'wb') {|f| f.write(content)}"
 
-cd /opt/rebuildnginx-extras/nginx-1.6.2
+cd /opt/rebuildnginx-extras/nginx-1.10.1
 
 apt-get install -y libgd2-noxpm-dev debhelper dh-systemd libgeoip-dev libluajit-5.1-dev libmhash-dev libperl-dev
 
@@ -40,6 +40,7 @@ cd /opt/rebuildnginx-extras
 
 apt-get remove -y nginx nginx-extras nginx-common
 
-apt-get install -y nginx-common init-system-helpers
+apt-get install -y init-system-helpers
+apt-get install -y nginx-common=1.10.1-0*
 
-dpkg --install nginx-extras_1.6.2-5+trusty0_amd64.deb
+dpkg --install nginx-extras_1.10.1-0+trusty0_amd64.deb
