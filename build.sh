@@ -43,4 +43,8 @@ apt-get remove -y nginx nginx-extras nginx-common
 apt-get install -y init-system-helpers
 apt-get install -y nginx-common=1.10.1-0*
 
+<<<<<<< HEAD
 dpkg --install nginx-extras_1.10.1-0+trusty0_amd64.deb
+=======
+dpkg --install nginx-extras_1.8.0-1+trusty1_amd64.deb
+>>>>>>> 660467b3b9dbc0e07e34d59547af55134abc37a9
