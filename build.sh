@@ -43,4 +43,23 @@ apt-get remove -y nginx nginx-extras nginx-common
 apt-get install -y init-system-helpers
 apt-get install -y nginx-common=1.10.3-0*
 
-dpkg --install nginx-extras_1.10.3-0+trusty0_amd64.deb
+sudo dpkg --install \
+  nginx-extras_1.10.3-0+trusty0_amd64.deb \
+  libnginx-mod-http-auth-pam_1.10.3-0+trusty0_amd64.deb \
+  libnginx-mod-http-cache-purge_1.10.3-0+trusty0_amd64.deb \
+  libnginx-mod-http-dav-ext_1.10.3-0+trusty0_amd64.deb \
+  libnginx-mod-http-echo_1.10.3-0+trusty0_amd64.deb \
+  libnginx-mod-http-fancyindex_1.10.3-0+trusty0_amd64.deb \
+  libnginx-mod-http-geoip_1.10.3-0+trusty0_amd64.deb \
+  libnginx-mod-http-headers-more-filter_1.10.3-0+trusty0_amd64.deb \
+  libnginx-mod-http-image-filter_1.10.3-0+trusty0_amd64.deb \
+  libnginx-mod-http-lua_1.10.3-0+trusty0_amd64.deb \
+  libnginx-mod-http-ndk_1.10.3-0+trusty0_amd64.deb \
+  libnginx-mod-http-perl_1.10.3-0+trusty0_amd64.deb \
+  libnginx-mod-http-subs-filter_1.10.3-0+trusty0_amd64.deb \
+  libnginx-mod-http-uploadprogress_1.10.3-0+trusty0_amd64.deb \
+  libnginx-mod-http-upstream-fair_1.10.3-0+trusty0_amd64.deb \
+  libnginx-mod-http-xslt-filter_1.10.3-0+trusty0_amd64.deb \
+  libnginx-mod-mail_1.10.3-0+trusty0_amd64.deb \
+  libnginx-mod-nchan_1.10.3-0+trusty0_amd64.deb \
+  libnginx-mod-stream_1.10.3-0+trusty0_amd64.deb
