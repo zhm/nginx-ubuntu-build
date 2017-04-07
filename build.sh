@@ -1,6 +1,8 @@
 # Install + modify this package: https://launchpad.net/~nginx/+archive/ubuntu/stable/+packages
 
-if [ -f "/opt/rebuildnginx-extras/nginx-extras_1.10.3-0+trusty1_amd64.deb" ]
+NGINX_VERSION="1.10.3"
+
+if [ -f "/opt/rebuildnginx-extras/nginx-extras_$NGINX_VERSION-0+trusty1_amd64.deb" ]
 then
   exit 0
 fi
@@ -28,9 +30,9 @@ apt-get build-dep nginx-extras
 # used to build nginx. This could easily be edited by hang, but installation of nginx would then be
 # a manual process. This is a somewhat fragile approach, but it will work for the current 1.8.0
 # deb package rules.
-ruby -e "content = File.read('/opt/rebuildnginx-extras/nginx-1.10.3/debian/rules').gsub('--add-module=\$(MODULESDIR)/ngx_http_substitutions_filter_module', \"--add-module=\$(MODULESDIR)/ngx_http_substitutions_filter_module \\\\\n\\t\\t\\t--add-module=/opt/httpupload/nginx-upload-module-2.2\"); File.open('/opt/rebuildnginx-extras/nginx-1.10.3/debian/rules', 'wb') {|f| f.write(content)}"
+ruby -e "content = File.read('/opt/rebuildnginx-extras/nginx-$NGINX_VERSION/debian/rules').gsub('--add-module=\$(MODULESDIR)/ngx_http_substitutions_filter_module', \"--add-module=\$(MODULESDIR)/ngx_http_substitutions_filter_module \\\\\n\\t\\t\\t--add-module=/opt/httpupload/nginx-upload-module-2.2\"); File.open('/opt/rebuildnginx-extras/nginx-$NGINX_VERSION/debian/rules', 'wb') {|f| f.write(content)}"
 
-cd /opt/rebuildnginx-extras/nginx-1.10.3
+cd /opt/rebuildnginx-extras/nginx-$NGINX_VERSION
 
 apt-get install -y libgd2-noxpm-dev debhelper dh-systemd libgeoip-dev libluajit-5.1-dev libmhash-dev libperl-dev
 
@@ -41,25 +43,32 @@ cd /opt/rebuildnginx-extras
 apt-get remove -y nginx nginx-extras nginx-common
 
 apt-get install -y init-system-helpers
-apt-get install -y nginx-common=1.10.3-0*
+apt-get install -y nginx-common=$NGINX_VERSION-0*
 
 sudo dpkg --install \
-  nginx-extras_1.10.3-0+trusty0_amd64.deb \
-  libnginx-mod-http-auth-pam_1.10.3-0+trusty0_amd64.deb \
-  libnginx-mod-http-cache-purge_1.10.3-0+trusty0_amd64.deb \
-  libnginx-mod-http-dav-ext_1.10.3-0+trusty0_amd64.deb \
-  libnginx-mod-http-echo_1.10.3-0+trusty0_amd64.deb \
-  libnginx-mod-http-fancyindex_1.10.3-0+trusty0_amd64.deb \
-  libnginx-mod-http-geoip_1.10.3-0+trusty0_amd64.deb \
-  libnginx-mod-http-headers-more-filter_1.10.3-0+trusty0_amd64.deb \
-  libnginx-mod-http-image-filter_1.10.3-0+trusty0_amd64.deb \
-  libnginx-mod-http-lua_1.10.3-0+trusty0_amd64.deb \
-  libnginx-mod-http-ndk_1.10.3-0+trusty0_amd64.deb \
-  libnginx-mod-http-perl_1.10.3-0+trusty0_amd64.deb \
-  libnginx-mod-http-subs-filter_1.10.3-0+trusty0_amd64.deb \
-  libnginx-mod-http-uploadprogress_1.10.3-0+trusty0_amd64.deb \
-  libnginx-mod-http-upstream-fair_1.10.3-0+trusty0_amd64.deb \
-  libnginx-mod-http-xslt-filter_1.10.3-0+trusty0_amd64.deb \
-  libnginx-mod-mail_1.10.3-0+trusty0_amd64.deb \
-  libnginx-mod-nchan_1.10.3-0+trusty0_amd64.deb \
-  libnginx-mod-stream_1.10.3-0+trusty0_amd64.deb
+  nginx-extras_$NGINX_VERSION-0+trusty0_amd64.deb \
+  libnginx-mod-http-auth-pam_$NGINX_VERSION-0+trusty0_amd64.deb \
+  libnginx-mod-http-cache-purge_$NGINX_VERSION-0+trusty0_amd64.deb \
+  libnginx-mod-http-dav-ext_$NGINX_VERSION-0+trusty0_amd64.deb \
+  libnginx-mod-http-echo_$NGINX_VERSION-0+trusty0_amd64.deb \
+  libnginx-mod-http-fancyindex_$NGINX_VERSION-0+trusty0_amd64.deb \
+  libnginx-mod-http-geoip_$NGINX_VERSION-0+trusty0_amd64.deb \
+  libnginx-mod-http-headers-more-filter_$NGINX_VERSION-0+trusty0_amd64.deb \
+  libnginx-mod-http-image-filter_$NGINX_VERSION-0+trusty0_amd64.deb \
+  libnginx-mod-http-lua_$NGINX_VERSION-0+trusty0_amd64.deb \
+  libnginx-mod-http-ndk_$NGINX_VERSION-0+trusty0_amd64.deb \
+  libnginx-mod-http-perl_$NGINX_VERSION-0+trusty0_amd64.deb \
+  libnginx-mod-http-subs-filter_$NGINX_VERSION-0+trusty0_amd64.deb \
+  libnginx-mod-http-uploadprogress_$NGINX_VERSION-0+trusty0_amd64.deb \
+  libnginx-mod-http-upstream-fair_$NGINX_VERSION-0+trusty0_amd64.deb \
+  libnginx-mod-http-xslt-filter_$NGINX_VERSION-0+trusty0_amd64.deb \
+  libnginx-mod-mail_$NGINX_VERSION-0+trusty0_amd64.deb \
+  libnginx-mod-nchan_$NGINX_VERSION-0+trusty0_amd64.deb \
+  libnginx-mod-stream_$NGINX_VERSION-0+trusty0_amd64.deb
+
+mkdir -p $NGINX_VERSION
+cp nginx-extras_$NGINX_VERSION-0+trusty0_amd64.deb $NGINX_VERSION
+cp libnginx-mod-* $NGINX_VERSION
+
+cd $NGINX_VERSION
+tar -zcvf ../nginx-$NGINX_VERSION.tar.gz .
