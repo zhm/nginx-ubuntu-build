@@ -1,8 +1,8 @@
 # Install + modify this package: https://launchpad.net/~nginx/+archive/ubuntu/stable/+packages
 
-NGINX_VERSION="1.10.3"
+NGINX_VERSION="1.12.1"
 
-if [ -f "/opt/rebuildnginx-extras/nginx-extras_$NGINX_VERSION-0+trusty1_amd64.deb" ]
+if [ -f "/opt/rebuildnginx-extras/nginx-extras_$NGINX_VERSION-0+trusty0_amd64.deb" ]
 then
   exit 0
 fi
