@@ -16,8 +16,8 @@ apt-get update
 rm -rf /opt/httpupload
 mkdir /opt/httpupload
 cd /opt/httpupload
-wget https://github.com/vkholodkov/nginx-upload-module/archive/2.2.zip
-unzip 2.2.zip
+wget https://github.com/zhm/nginx-upload-module/archive/master.zip
+unzip master.zip
 
 apt-get install -y dpkg-dev
 rm -rf /opt/rebuildnginx-extras
