@@ -26,11 +26,11 @@ cd /opt/rebuildnginx-extras
 apt-get source -y nginx-extras
 apt-get build-dep nginx-extras
 
-# Add `--add-module=/opt/httpupload/nginx-upload-module-2.2` to the end of the configure command
+# Add `--add-module=/opt/httpupload/nginx-upload-module-master` to the end of the configure command
 # used to build nginx. This could easily be edited by hang, but installation of nginx would then be
 # a manual process. This is a somewhat fragile approach, but it will work for the current 1.8.0
 # deb package rules.
-ruby -e "content = File.read('/opt/rebuildnginx-extras/nginx-$NGINX_VERSION/debian/rules').gsub('--add-dynamic-module=\$(MODULESDIR)/ngx_http_substitutions_filter_module', \"--add-dynamic-module=\$(MODULESDIR)/ngx_http_substitutions_filter_module \\\\\n\\t\\t\\t--add-module=/opt/httpupload/nginx-upload-module-2.2\"); File.open('/opt/rebuildnginx-extras/nginx-$NGINX_VERSION/debian/rules', 'wb') {|f| f.write(content)}"
+ruby -e "content = File.read('/opt/rebuildnginx-extras/nginx-$NGINX_VERSION/debian/rules').gsub('--add-dynamic-module=\$(MODULESDIR)/ngx_http_substitutions_filter_module', \"--add-dynamic-module=\$(MODULESDIR)/ngx_http_substitutions_filter_module \\\\\n\\t\\t\\t--add-module=/opt/httpupload/nginx-upload-module-master\"); File.open('/opt/rebuildnginx-extras/nginx-$NGINX_VERSION/debian/rules', 'wb') {|f| f.write(content)}"
 
 cd /opt/rebuildnginx-extras/nginx-$NGINX_VERSION
 
